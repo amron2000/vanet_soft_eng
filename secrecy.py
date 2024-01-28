@@ -1,4 +1,5 @@
 import hashlib
+import secrets
 
 import mcl
 
@@ -159,7 +160,11 @@ class SecrecyEngine:
 
     def secure_shuffle(self, array: list) -> (list, list):
         # [TODO] not secure
-        indices = list(range(len(array)))
-        rand.shuffle(indices)
+        # indices = list(range(len(array)))
+        indices = secrets.randperm(len(array))
+        """
+         I have replaced rand.shuffle(indices) with the secrets library
+         random method, more secure randomization
+        """
         shuffled_array = [array[i] for i in indices]
         return (shuffled_array, indices)
